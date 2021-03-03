@@ -32,5 +32,4 @@ public class Expense {
     @NotNull
     @Enumerated
     private Currency currency;
-
 }
