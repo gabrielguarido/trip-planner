@@ -8,7 +8,6 @@ import springfox.documentation.service.Contact;
  * @author Gabriel Oliveira
  */
 public class SwaggerParameters {
-
     protected static final String TITLE = "TRIP PLANNER";
 
     protected static final String DESCRIPTION = "Plan your trips with this app";
