@@ -7,7 +7,15 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @Data
-public class AuthenticationContext {
+public class UserCreationContext {
+    @NotEmpty
+    @Size(max = 40)
+    private String firstName;
+
+    @NotEmpty
+    @Size(max = 40)
+    private String lastName;
+
     @Email
     @NotEmpty
     @Size(max = 140)

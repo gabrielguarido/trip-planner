@@ -16,7 +16,6 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "expense")
 public class Expense {
-
     @Id
     @Column(name = "expense_id")
     private Integer id;

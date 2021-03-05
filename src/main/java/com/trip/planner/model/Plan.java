@@ -24,7 +24,6 @@ import java.util.Set;
 @Entity
 @Table(name = "plan", uniqueConstraints = {@UniqueConstraint(columnNames = {"country_name"})})
 public class Plan {
-
     @Id
     @Column(name = "plan_id")
     private Integer id;

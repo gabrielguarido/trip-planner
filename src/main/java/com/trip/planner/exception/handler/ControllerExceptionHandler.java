@@ -1,5 +1,6 @@
 package com.trip.planner.exception.handler;
 
+import com.trip.planner.exception.PayloadValidationException;
 import com.trip.planner.exception.ResourceNotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -85,6 +86,16 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler({ResourceNotFoundException.class})
     public ResponseEntity<Object> handleResourceNotFoundException(ResourceNotFoundException ex) {
+        List<String> userMessages = Collections.singletonList(ex.getMessage());
+        String completeMessage = ex.getMessage();
+        List<Error> errorList = Collections.singletonList(new Error(userMessages));
+
+        log.error(completeMessage);
+        return new ResponseEntity<>(errorList, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler({PayloadValidationException.class})
+    public ResponseEntity<Object> handlePayloadValidationException(PayloadValidationException ex) {
         List<String> userMessages = Collections.singletonList(ex.getMessage());
         String completeMessage = ex.getMessage();
         List<Error> errorList = Collections.singletonList(new Error(userMessages));
