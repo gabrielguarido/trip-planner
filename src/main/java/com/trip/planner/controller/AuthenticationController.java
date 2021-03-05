@@ -1,5 +1,6 @@
 package com.trip.planner.controller;
 
+import com.trip.planner.model.User;
 import com.trip.planner.model.context.AuthenticationContext;
 import com.trip.planner.resource.AuthenticationResource;
 import com.trip.planner.service.AuthenticationService;
@@ -34,8 +35,7 @@ public class AuthenticationController implements AuthenticationResource {
             @ApiResponse(code = 400, message = "Invalid credentials"),
             @ApiResponse(code = 500, message = "Something Unexpected Happened")
     })
-    public ResponseEntity<AuthenticationContext> login(@RequestBody @Valid AuthenticationContext authenticationContext) {
-        authenticationService.login(authenticationContext);
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<User> login(@RequestBody @Valid AuthenticationContext authenticationContext) {
+        return new ResponseEntity<>(authenticationService.authenticate(authenticationContext), HttpStatus.OK);
     }
 }

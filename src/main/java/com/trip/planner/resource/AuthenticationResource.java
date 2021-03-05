@@ -1,5 +1,6 @@
 package com.trip.planner.resource;
 
+import com.trip.planner.model.User;
 import com.trip.planner.model.context.AuthenticationContext;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,5 +15,5 @@ import javax.validation.Valid;
  */
 public interface AuthenticationResource {
     @PostMapping
-    ResponseEntity<AuthenticationContext> login(@RequestBody @Valid AuthenticationContext authenticationContext);
+    ResponseEntity<User> login(@RequestBody @Valid AuthenticationContext authenticationContext);
 }

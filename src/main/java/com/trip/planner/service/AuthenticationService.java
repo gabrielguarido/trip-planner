@@ -1,6 +1,7 @@
 package com.trip.planner.service;
 
 import com.trip.planner.exception.ResourceNotFoundException;
+import com.trip.planner.model.User;
 import com.trip.planner.model.context.AuthenticationContext;
 import com.trip.planner.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +19,8 @@ public class AuthenticationService {
     @Autowired
     private UserRepository userRepository;
 
-    public void login(AuthenticationContext authenticationContext) {
-        userRepository.findByEmailAndPassword(authenticationContext.getEmail(), authenticationContext.getPassword())
+    public User authenticate(AuthenticationContext authenticationContext) {
+        return userRepository.findByEmailAndPassword(authenticationContext.getEmail(), authenticationContext.getPassword())
                 .orElseThrow(() -> new ResourceNotFoundException(INVALID_CREDENTIALS));
     }
 }
