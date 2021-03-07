@@ -51,6 +51,10 @@ public class PlanService {
         return savedPlan;
     }
 
+    public void delete(Integer planId) {
+        planRepository.delete(verifyIfExists(planId));
+    }
+
     public void saveExpense(Plan plan, Expense expense) {
         plan.getExpenseSet().add(expense);
 

@@ -11,6 +11,7 @@ import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,5 +37,14 @@ public class ExpenseController implements ExpenseResource {
     })
     public ResponseEntity<Expense> create(@RequestBody @Valid ExpenseCreationContext expenseCreationContext) {
         return ResponseEntity.ok(expenseService.create(expenseCreationContext));
+    }
+
+    @ApiOperation(value = "Delete expense")
+    @ApiResponses(value = {
+            @ApiResponse(code = 400, message = "Invalid expenseId"),
+            @ApiResponse(code = 500, message = "Something Unexpected Happened")
+    })
+    public void delete(@PathVariable Integer expenseId) {
+        expenseService.delete(expenseId);
     }
 }
