@@ -22,5 +22,6 @@ public class UserCreationContext {
     private String email;
 
     @NotEmpty
+    @Size(min = 4, max = 20)
     private String password;
 }

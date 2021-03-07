@@ -2,6 +2,7 @@ package com.trip.planner.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
@@ -21,6 +22,7 @@ import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
+@Data
 @Entity
 @Builder
 @NoArgsConstructor
@@ -48,8 +50,8 @@ public class User {
     private String email;
 
     @NotEmpty
-    @Size(max = 255)
-    @Column(nullable = false)
+    @Size(min = 4, max = 20)
+    @Column(nullable = false, length = 20)
     private String password;
 
     @ManyToMany(fetch = FetchType.LAZY)
