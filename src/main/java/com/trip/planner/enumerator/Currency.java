@@ -6,7 +6,5 @@ package com.trip.planner.enumerator;
  * @author Gabriel Oliveira
  */
 public enum Currency {
-
-    BRT, USD, COP, CAD, EUR, JPY, AUD
-
+    BRL, USD, COP, CAD, EUR, JPY, AUD
 }

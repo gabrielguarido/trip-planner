@@ -1,7 +1,9 @@
 package com.trip.planner.util;
 
+import com.trip.planner.model.Expense;
 import com.trip.planner.model.Plan;
 import com.trip.planner.model.User;
+import com.trip.planner.model.context.ExpenseCreationContext;
 import com.trip.planner.model.context.PlanCreationContext;
 import com.trip.planner.model.context.UserCreationContext;
 
@@ -28,6 +30,14 @@ public final class ContextUtil {
                 .countryName(planCreationContext.getCountryName())
                 .departureDate(planCreationContext.getDepartureDate())
                 .returnDate(planCreationContext.getReturnDate())
+                .build();
+    }
+
+    public static Expense buildExpense(ExpenseCreationContext expenseCreationContext) {
+        return Expense.builder()
+                .description(expenseCreationContext.getDescription())
+                .amount(expenseCreationContext.getAmount())
+                .currency(expenseCreationContext.getCurrency())
                 .build();
     }
 }

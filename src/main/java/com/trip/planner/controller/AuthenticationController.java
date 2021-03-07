@@ -9,7 +9,6 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -36,6 +35,6 @@ public class AuthenticationController implements AuthenticationResource {
             @ApiResponse(code = 500, message = "Something Unexpected Happened")
     })
     public ResponseEntity<User> login(@RequestBody @Valid AuthenticationContext authenticationContext) {
-        return new ResponseEntity<>(authenticationService.authenticate(authenticationContext), HttpStatus.OK);
+        return ResponseEntity.ok(authenticationService.authenticate(authenticationContext));
     }
 }

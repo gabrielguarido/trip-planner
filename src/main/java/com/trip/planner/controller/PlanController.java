@@ -9,7 +9,6 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -36,6 +35,6 @@ public class PlanController implements PlanResource {
             @ApiResponse(code = 500, message = "Something Unexpected Happened")
     })
     public ResponseEntity<Plan> create(@RequestBody @Valid PlanCreationContext planCreationContext) {
-        return new ResponseEntity<>(planService.create(planCreationContext), HttpStatus.OK);
+        return ResponseEntity.ok(planService.create(planCreationContext));
     }
 }

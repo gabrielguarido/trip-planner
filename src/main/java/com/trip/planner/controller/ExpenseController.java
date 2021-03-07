@@ -1,9 +1,9 @@
 package com.trip.planner.controller;
 
-import com.trip.planner.model.User;
-import com.trip.planner.model.context.UserCreationContext;
-import com.trip.planner.resource.UserResource;
-import com.trip.planner.service.UserService;
+import com.trip.planner.model.Expense;
+import com.trip.planner.model.context.ExpenseCreationContext;
+import com.trip.planner.resource.ExpenseResource;
+import com.trip.planner.service.ExpenseService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -18,23 +18,23 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 
 /**
- * Expose the API endpoints for {@link User} resources.
+ * Expose the API endpoints for {@link Expense} resources.
  *
  * @author Gabriel Oliveira
  */
 @RestController
-@Api(value = "Users REST API")
-@RequestMapping(value = "user", produces = MediaType.APPLICATION_JSON_VALUE)
-public class UserController implements UserResource {
+@Api(value = "Expense REST API")
+@RequestMapping(value = "expense", produces = MediaType.APPLICATION_JSON_VALUE)
+public class ExpenseController implements ExpenseResource {
     @Autowired
-    private UserService userService;
+    private ExpenseService expenseService;
 
-    @ApiOperation(value = "Register new user")
+    @ApiOperation(value = "Create new expense")
     @ApiResponses(value = {
             @ApiResponse(code = 400, message = "Invalid payload"),
             @ApiResponse(code = 500, message = "Something Unexpected Happened")
     })
-    public ResponseEntity<User> register(@RequestBody @Valid UserCreationContext userCreationContext) {
-        return ResponseEntity.ok(userService.register(userCreationContext));
+    public ResponseEntity<Expense> create(@RequestBody @Valid ExpenseCreationContext expenseCreationContext) {
+        return ResponseEntity.ok(expenseService.create(expenseCreationContext));
     }
 }
