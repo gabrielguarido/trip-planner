@@ -14,13 +14,13 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class AuthenticationService {
-    private static final String INVALID_CREDENTIALS = "Invalid credentials. Please provide a valid e-mail address and password";
+    private static final String INVALID_CREDENTIALS_MESSAGE = "Invalid credentials. Please provide a valid e-mail address and password";
 
     @Autowired
     private UserRepository userRepository;
 
     public User authenticate(AuthenticationContext authenticationContext) {
         return userRepository.findByEmailAndPassword(authenticationContext.getEmail(), authenticationContext.getPassword())
-                .orElseThrow(() -> new ResourceNotFoundException(INVALID_CREDENTIALS));
+                .orElseThrow(() -> new ResourceNotFoundException(INVALID_CREDENTIALS_MESSAGE));
     }
 }

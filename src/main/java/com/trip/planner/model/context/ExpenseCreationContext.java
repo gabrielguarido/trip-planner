@@ -15,7 +15,7 @@ public class ExpenseCreationContext {
     private String description;
 
     @NotNull
-    private double amount;
+    private Double amount;
 
     @NotNull
     private Currency currency;
