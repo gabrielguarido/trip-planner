@@ -91,7 +91,7 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
         List<Error> errorList = Collections.singletonList(new Error(userMessages));
 
         log.error(completeMessage);
-        return new ResponseEntity<>(errorList, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(errorList, HttpStatus.UNAUTHORIZED);
     }
 
     @ExceptionHandler({PayloadValidationException.class})
