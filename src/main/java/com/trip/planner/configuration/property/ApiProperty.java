@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 @Service
 @ConfigurationProperties("api")
 public class ApiProperty {
-    private static final String ALLOWED_ORIGIN = "http://localhost:3000";
+    private static final String ALLOWED_ORIGIN = "http://localhost:4200";
 
     public String getAllowedOrigin() {
         return ALLOWED_ORIGIN;
