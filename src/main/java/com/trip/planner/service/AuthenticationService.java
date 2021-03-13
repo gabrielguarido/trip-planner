@@ -20,7 +20,11 @@ public class AuthenticationService {
     private UserRepository userRepository;
 
     public User authenticate(AuthenticationContext authenticationContext) {
-        return userRepository.findByEmailAndPassword(authenticationContext.getEmail(), authenticationContext.getPassword())
+        User user = userRepository.findByEmailAndPassword(authenticationContext.getEmail(), authenticationContext.getPassword())
                 .orElseThrow(() -> new ResourceNotFoundException(INVALID_CREDENTIALS_MESSAGE));
+
+        user.setPassword(null);
+
+        return user;
     }
 }
