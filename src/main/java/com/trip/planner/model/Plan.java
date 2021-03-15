@@ -59,6 +59,10 @@ public class Plan {
     @JoinTable(name = "plan_expense", joinColumns = @JoinColumn(name = "plan_id"), inverseJoinColumns = @JoinColumn(name = "expense_id"))
     private Set<Expense> expenseSet = new HashSet<>();
 
+    @NotNull
+    @Column(nullable = false)
+    private Integer duration;
+
     @JsonIgnore
     @ManyToMany(mappedBy = "planSet")
     private Set<User> users = new HashSet<>();

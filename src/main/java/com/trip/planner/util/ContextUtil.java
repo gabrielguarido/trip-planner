@@ -26,10 +26,13 @@ public final class ContextUtil {
     }
 
     public static Plan buildPlan(PlanCreationContext planCreationContext) {
+        int duration = planCreationContext.getReturnDate().getDayOfYear() - planCreationContext.getDepartureDate().getDayOfYear();
+
         return Plan.builder()
                 .countryName(planCreationContext.getCountryName())
                 .departureDate(planCreationContext.getDepartureDate())
                 .returnDate(planCreationContext.getReturnDate())
+                .duration(duration)
                 .build();
     }
 
