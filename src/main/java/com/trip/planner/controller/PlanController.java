@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * Expose the API endpoints for {@link Plan} resources.
@@ -29,6 +30,15 @@ import javax.validation.Valid;
 public class PlanController implements PlanResource {
     @Autowired
     private PlanService planService;
+
+    @ApiOperation(value = "Find all plans by userId")
+    @ApiResponses(value = {
+            @ApiResponse(code = 400, message = "User ID not found"),
+            @ApiResponse(code = 500, message = "Something Unexpected Happened")
+    })
+    public ResponseEntity<List<Plan>> findAllByUserId(@PathVariable Integer userId) {
+        return ResponseEntity.ok(planService.findAllByUserId(userId));
+    }
 
     @ApiOperation(value = "Create new plan")
     @ApiResponses(value = {

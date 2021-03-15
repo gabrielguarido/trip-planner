@@ -4,11 +4,13 @@ import com.trip.planner.model.Plan;
 import com.trip.planner.model.context.PlanCreationContext;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * Define all the {@link Plan} resources that will be exposed by the Controller classes.
@@ -16,6 +18,9 @@ import javax.validation.Valid;
  * @author Gabriel Oliveira
  */
 public interface PlanResource {
+    @GetMapping("/{userId}")
+    ResponseEntity<List<Plan>> findAllByUserId(@PathVariable Integer userId);
+
     @PostMapping
     ResponseEntity<Plan> create(@RequestBody @Valid PlanCreationContext planCreationContext);
 

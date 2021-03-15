@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import static com.trip.planner.util.ContextUtil.buildPlan;
 
@@ -29,6 +30,12 @@ public class PlanService {
 
     @Autowired
     private UserService userService;
+
+    public List<Plan> findAllByUserId(Integer userId) {
+        userService.verifyIfExists(userId);
+
+        return planRepository.findAllByUserId(userId);
+    }
 
     public Plan create(PlanCreationContext planCreationContext) {
         LocalDate departureDate = planCreationContext.getDepartureDate();
