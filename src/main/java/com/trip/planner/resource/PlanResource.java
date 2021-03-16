@@ -18,8 +18,11 @@ import java.util.List;
  * @author Gabriel Oliveira
  */
 public interface PlanResource {
-    @GetMapping("/{userId}")
+    @GetMapping("/user/{userId}")
     ResponseEntity<List<Plan>> findAllByUserId(@PathVariable Integer userId);
+
+    @GetMapping("/{planId}")
+    ResponseEntity<Plan> findById(@PathVariable Integer planId);
 
     @PostMapping
     ResponseEntity<Plan> create(@RequestBody @Valid PlanCreationContext planCreationContext);

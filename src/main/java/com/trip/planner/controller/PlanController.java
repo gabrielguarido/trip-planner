@@ -40,6 +40,15 @@ public class PlanController implements PlanResource {
         return ResponseEntity.ok(planService.findAllByUserId(userId));
     }
 
+    @ApiOperation(value = "Find plan by ID")
+    @ApiResponses(value = {
+            @ApiResponse(code = 400, message = "Plan ID not found"),
+            @ApiResponse(code = 500, message = "Something Unexpected Happened")
+    })
+    public ResponseEntity<Plan> findById(@PathVariable Integer planId) {
+        return ResponseEntity.ok(planService.findById(planId));
+    }
+
     @ApiOperation(value = "Create new plan")
     @ApiResponses(value = {
             @ApiResponse(code = 400, message = "Invalid payload"),

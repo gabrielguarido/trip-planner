@@ -37,6 +37,10 @@ public class PlanService {
         return planRepository.findAllByUserId(userId);
     }
 
+    public Plan findById(Integer planId) {
+        return verifyIfExists(planId);
+    }
+
     public Plan create(PlanCreationContext planCreationContext) {
         LocalDate departureDate = planCreationContext.getDepartureDate();
         LocalDate returnDate = planCreationContext.getReturnDate();
