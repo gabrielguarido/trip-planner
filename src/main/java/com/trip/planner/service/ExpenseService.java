@@ -9,6 +9,8 @@ import com.trip.planner.repository.ExpenseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 import static com.trip.planner.util.ContextUtil.buildExpense;
 
 /**
@@ -26,6 +28,12 @@ public class ExpenseService {
 
     @Autowired
     private PlanService planService;
+
+    public List<Expense> findAllByPlanId(Integer planId) {
+        planService.verifyIfExists(planId);
+
+        return expenseRepository.findAllByPlanId(planId);
+    }
 
     public Expense create(ExpenseCreationContext expenseCreationContext) {
         if (invalidAmount(expenseCreationContext.getAmount())) {

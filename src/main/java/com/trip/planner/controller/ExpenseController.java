@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * Expose the API endpoints for {@link Expense} resources.
@@ -29,6 +30,15 @@ import javax.validation.Valid;
 public class ExpenseController implements ExpenseResource {
     @Autowired
     private ExpenseService expenseService;
+
+    @ApiOperation(value = "Find all expenses by planId")
+    @ApiResponses(value = {
+            @ApiResponse(code = 400, message = "Plan ID not found"),
+            @ApiResponse(code = 500, message = "Something Unexpected Happened")
+    })
+    public ResponseEntity<List<Expense>> findAllByPlanId(@PathVariable Integer planId) {
+        return ResponseEntity.ok(expenseService.findAllByPlanId(planId));
+    }
 
     @ApiOperation(value = "Create new expense")
     @ApiResponses(value = {
