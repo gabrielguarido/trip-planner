@@ -58,6 +58,7 @@ public class Expense {
     private void removeProfiles() {
         for (Plan plan : plans) {
             plan.getExpenseSet().remove(this);
+            plan.setTotalExpenses(plan.getTotalExpenses() - this.getAmount());
         }
     }
 }
