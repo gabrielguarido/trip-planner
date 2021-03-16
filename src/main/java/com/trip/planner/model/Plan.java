@@ -2,6 +2,7 @@ package com.trip.planner.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.trip.planner.enumerator.Currency;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -10,6 +11,8 @@ import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -54,6 +57,15 @@ public class Plan {
     @Column(nullable = false)
     @JsonFormat(pattern = "MM/dd/yyyy")
     private LocalDate returnDate;
+
+    @NotNull
+    @Column(nullable = false)
+    private Double totalExpenses;
+
+    @NotNull
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Currency currency;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "plan_expense", joinColumns = @JoinColumn(name = "plan_id"), inverseJoinColumns = @JoinColumn(name = "expense_id"))

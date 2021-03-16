@@ -46,6 +46,7 @@ public class Expense {
     private Double amount;
 
     @NotNull
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Currency currency;
 

@@ -68,6 +68,8 @@ public class PlanService {
 
     public void saveExpense(Plan plan, Expense expense) {
         plan.getExpenseSet().add(expense);
+        plan.setCurrency(expense.getCurrency());
+        plan.setTotalExpenses(plan.getTotalExpenses() + expense.getAmount());
 
         planRepository.save(plan);
     }
