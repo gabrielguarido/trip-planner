@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 @Service
 @ConfigurationProperties("api")
 public class ApiProperty {
-    private static final String ALLOWED_ORIGIN = "https://trip-planner-interface.herokuapp.com/";
+    private static final String ALLOWED_ORIGIN = "https://trip-planner-interface.herokuapp.com";
 
     public String getAllowedOrigin() {
         return ALLOWED_ORIGIN;
