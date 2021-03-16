@@ -7,6 +7,8 @@ import com.trip.planner.model.context.ExpenseCreationContext;
 import com.trip.planner.model.context.PlanCreationContext;
 import com.trip.planner.model.context.UserCreationContext;
 
+import static com.trip.planner.enumerator.Currency.BRL;
+
 /**
  * Utility class for building entities based on context classes.
  *
@@ -33,6 +35,8 @@ public final class ContextUtil {
                 .departureDate(planCreationContext.getDepartureDate())
                 .returnDate(planCreationContext.getReturnDate())
                 .duration(duration)
+                .totalExpenses((double) 0)
+                .currency(BRL)
                 .build();
     }
 
