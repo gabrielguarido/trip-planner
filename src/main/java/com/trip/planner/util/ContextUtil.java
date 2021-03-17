@@ -8,6 +8,7 @@ import com.trip.planner.model.context.PlanCreationContext;
 import com.trip.planner.model.context.UserCreationContext;
 
 import static com.trip.planner.enumerator.Currency.BRL;
+import static java.time.temporal.ChronoUnit.DAYS;
 
 /**
  * Utility class for building entities based on context classes.
@@ -28,13 +29,13 @@ public final class ContextUtil {
     }
 
     public static Plan buildPlan(PlanCreationContext planCreationContext) {
-        int duration = planCreationContext.getReturnDate().getDayOfYear() - planCreationContext.getDepartureDate().getDayOfYear();
+        long duration = DAYS.between(planCreationContext.getDepartureDate(), planCreationContext.getReturnDate());
 
         return Plan.builder()
                 .countryName(planCreationContext.getCountryName())
                 .departureDate(planCreationContext.getDepartureDate())
                 .returnDate(planCreationContext.getReturnDate())
-                .duration(duration)
+                .duration((int) duration)
                 .totalExpenses((double) 0)
                 .currency(BRL)
                 .build();
